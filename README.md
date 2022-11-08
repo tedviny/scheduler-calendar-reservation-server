@@ -1,4 +1,4 @@
-#Scheduler calendar reservation project server
+# Scheduler calendar reservation project server
 ## REST API
 This project is completed by using Python, Django & Django REST framework.
 ### Description:
