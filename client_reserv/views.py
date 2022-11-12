@@ -4,6 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ParseError
 from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
+
 from client_reserv.models import Reservation, TimeSlot
 from client_reserv.serializers import ReservationSerializer, TimeSlotSerializer
 from django.http.response import JsonResponse
@@ -37,8 +39,9 @@ def reservationApi(request, id=0):
     reservation_serializer = ReservationSerializer(data=reservation_data)
     if reservation_serializer.is_valid():
       reservation_serializer.save()
-      return JsonResponse("New reservation successfully added!", safe=False)
-    return JsonResponse("Failed to add reservation", safe=False)
+      return HttpResponse(status=201)
+    return HttpResponse(status=400)
+
 
 @csrf_exempt
 def timeslotApi(request, id=0):
